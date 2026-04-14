@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Club | Your University</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-color: #020617;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0);
+            background-size: 2rem 2rem;
+        }
+        /* Style for leaderboard table */
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+        }
+        /* Styles for the modal */
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-box {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-slate-900 flex items-center">
+                <i data-lucide="bar-chart-3" class="mr-2 text-sky-500"></i>
+                DS Club
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-slate-600 hover:text-sky-500 transition-colors duration-300">About</a>
+                <a href="#projects" class="text-slate-600 hover:text-sky-500 transition-colors duration-300">Projects</a>
+                <a href="#events" class="text-slate-600 hover:text-sky-500 transition-colors duration-300">Events</a>
+                <a href="#quiz" class="text-slate-600 hover:text-sky-500 transition-colors duration-300">Quiz</a>
+                <a href="#team" class="text-slate-600 hover:text-sky-500 transition-colors duration-300">Team</a>
+                <a href="#contact" class="bg-sky-500 text-white px-4 py-2 rounded-lg hover:bg-sky-600 transition-all duration-300 shadow-md hover:shadow-lg">Join Us</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-lucide="menu" class="h-6 w-6"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#about" class="block py-2 text-slate-600 hover:text-sky-500">About</a>
+            <a href="#projects" class="block py-2 text-slate-600 hover:text-sky-500">Projects</a>
+            <a href="#events" class="block py-2 text-slate-600 hover:text-sky-500">Events</a>
+            <a href="#quiz" class="block py-2 text-slate-600 hover:text-sky-500">Quiz</a>
+            <a href="#team" class="block py-2 text-slate-600 hover:text-sky-500">Team</a>
+            <a href="#contact" class="block mt-2 bg-sky-500 text-white px-4 py-2 rounded-lg hover:bg-sky-600 text-center">Join Us</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-bg text-white py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Unlock the Power of Data</h1>
+                <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-8">Join the Data Science Club to collaborate, learn, and build the future with data-driven insights and cutting-edge projects.</p>
+                <a href="#contact" class="bg-white text-slate-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-slate-200 transition-all duration-300 transform hover:scale-105">Become a Member</a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Who We Are</h2>
+                    <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Our mission is to foster a community of aspiring data scientists, providing resources, mentorship, and hands-on experience.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-slate-50 p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-sky-100 text-sky-500 rounded-full p-4 inline-flex mb-4">
+                            <i data-lucide="lightbulb" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Learn</h3>
+                        <p class="text-slate-600">Gain practical skills through workshops on machine learning, data visualization, and more.</p>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-sky-100 text-sky-500 rounded-full p-4 inline-flex mb-4">
+                           <i data-lucide="users" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Collaborate</h3>
+                        <p class="text-slate-600">Work on real-world projects with peers, building a strong portfolio and network.</p>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-sky-100 text-sky-500 rounded-full p-4 inline-flex mb-4">
+                            <i data-lucide="trending-up" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Grow</h3>
+                        <p class="text-slate-600">Connect with industry professionals and get a head start on your data science career.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Our Projects</h2>
+                    <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Check out some of the innovative projects our members have been working on.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/0ea5e9/ffffff?text=Project+Alpha" alt="Project Alpha" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Sentiment Analysis of Movie Reviews</h3>
+                            <p class="text-slate-600 mb-4">An NLP project to classify movie reviews as positive or negative using machine learning models.</p>
+                            <a href="#" class="text-sky-500 font-semibold hover:underline">View on GitHub &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/10b981/ffffff?text=Project+Beta" alt="Project Beta" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Housing Price Prediction</h3>
+                            <p class="text-slate-600 mb-4">A regression model to predict housing prices based on various features of the property.</p>
+                            <a href="#" class="text-sky-500 font-semibold hover:underline">View on GitHub &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Project+Gamma" alt="Project Gamma" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Customer Churn Analysis</h3>
+                            <p class="text-slate-600 mb-4">Analyzing customer data to identify patterns and predict which customers are likely to churn.</p>
+                            <a href="#" class="text-sky-500 font-semibold hover:underline">View on GitHub &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Upcoming Events</h2>
+                    <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Join us for our upcoming workshops, talks, and networking sessions.</p>
+                </div>
+                <div class="max-w-3xl mx-auto">
+                    <!-- Event Item 1 -->
+                    <div class="flex items-center mb-8 bg-slate-50 p-4 rounded-lg shadow-sm">
+                        <div class="bg-sky-500 text-white text-center rounded-lg p-4 mr-6">
+                            <p class="text-4xl font-bold">25</p>
+                            <p class="text-sm">AUG</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Intro to Python for Data Science</h3>
+                            <p class="text-slate-600">A beginner-friendly workshop covering the basics of Python programming with libraries like NumPy and Pandas.</p>
+                        </div>
+                    </div>
+                    <!-- Event Item 2 -->
+                    <div class="flex items-center mb-8 bg-slate-50 p-4 rounded-lg shadow-sm">
+                        <div class="bg-sky-500 text-white text-center rounded-lg p-4 mr-6">
+                            <p class="text-4xl font-bold">10</p>
+                            <p class="text-sm">SEP</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Guest Lecture: AI in Healthcare</h3>
+                            <p class="text-slate-600">Hear from Dr. Evelyn Reed, a leading researcher on the applications of AI in medical diagnostics.</p>
+                        </div>
+                    </div>
+                     <!-- Event Item 3 -->
+                    <div class="flex items-center bg-slate-50 p-4 rounded-lg shadow-sm">
+                        <div class="bg-sky-500 text-white text-center rounded-lg p-4 mr-6">
+                            <p class="text-4xl font-bold">28</p>
+                            <p class="text-sm">SEP</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Kaggle Competition Kick-off</h3>
+                            <p class="text-slate-600">Form teams and get ready to tackle a real-world data challenge in our annual Kaggle competition.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz & Leaderboard Section -->
+        <section id="quiz" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Weekly MiniKahoot Quiz</h2>
+                    <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Test your knowledge every session with our fun, interactive quizzes and climb the leaderboard!</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- MiniKahoot CTA -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                        <img src="https://placehold.co/300x200/38bdf8/ffffff?text=MiniKahoot!" alt="MiniKahoot" class="mx-auto mb-6 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-2">Ready to Play?</h3>
+                        <p class="text-slate-600 mb-6">Join the live quiz at the end of our next session. A new challenge awaits every week!</p>
+                        <button id="join-quiz-button" class="bg-sky-500 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-sky-600 transition-all duration-300 inline-block">Join Quiz (Link Active During Session)</button>
+                    </div>
+                    <!-- Leaderboard -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6 text-center flex items-center justify-center"><i data-lucide="trophy" class="mr-2 text-amber-400"></i>Leaderboard</h3>
+                        <table class="w-full leaderboard-table">
+                            <thead>
+                                <tr class="border-b-2 border-slate-200">
+                                    <th class="font-semibold text-slate-700">Rank</th>
+                                    <th class="font-semibold text-slate-700">Name</th>
+                                    <th class="font-semibold text-slate-700">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-100">
+                                    <td class="font-bold text-lg">1st</td>
+                                    <td>Ben Carter</td>
+                                    <td>12,500</td>
+                                </tr>
+                                <tr class="bg-slate-50 border-b border-slate-100">
+                                    <td class="font-bold text-lg">2nd</td>
+                                    <td>Priya Sharma</td>
+                                    <td>11,800</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="font-bold text-lg">3rd</td>
+                                    <td>Leo Rodriguez</td>
+                                    <td>11,250</td>
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <td>4th</td>
+                                    <td>Aisha Bello</td>
+                                    <td>10,900</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Team Section -->
+        <section id="team" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Meet the Team</h2>
+                    <p class="text-slate-600 mt-4 max-w-2xl mx-auto">The passionate individuals leading the Data Science Club.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <!-- Team Member 1 -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/e2e8f0/334155?text=A" alt="Team Member 1" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
+                        <h3 class="text-lg font-semibold">Alex Johnson</h3>
+                        <p class="text-slate-600">President</p>
+                    </div>
+                    <!-- Team Member 2 -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/e2e8f0/334155?text=B" alt="Team Member 2" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
+                        <h3 class="text-lg font-semibold">Maria Garcia</h3>
+                        <p class="text-slate-600">Vice President</p>
+                    </div>
+                    <!-- Team Member 3 -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/e2e8f0/334155?text=C" alt="Team Member 3" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
+                        <h3 class="text-lg font-semibold">Chen Wei</h3>
+                        <p class="text-slate-600">Projects Lead</p>
+                    </div>
+                    <!-- Team Member 4 -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/e2e8f0/334155?text=D" alt="Team Member 4" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
+                        <h3 class="text-lg font-semibold">Samira Khan</h3>
+                        <p class="text-slate-600">Events Coordinator</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Get In Touch</h2>
+                    <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Have questions or want to join? Send us a message!</p>
+                </div>
+                <div class="max-w-2xl mx-auto">
+                    <form id="contact-form" class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="mb-4">
+                            <label for="name" class="block text-slate-700 font-medium mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-slate-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-slate-700 font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-sky-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-sky-600 transition-all duration-300">Send Message</button>
+                    </form>
+                    <div id="form-success-message" class="hidden mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg relative" role="alert">
+                        <strong class="font-bold">Success!</strong>
+                        <span class="block sm:inline">Your message has been sent. We'll get back to you soon.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="hover:text-white"><i data-lucide="github" class="h-6 w-6"></i></a>
+                <a href="#" class="hover:text-white"><i data-lucide="linkedin" class="h-6 w-6"></i></a>
+                <a href="#" class="hover:text-white"><i data-lucide="twitter" class="h-6 w-6"></i></a>
+            </div>
+            <p>&copy; 2024 Data Science Club at Your University. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Quiz Modal -->
+    <div id="quiz-modal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
+        <div class="modal-box bg-white rounded-lg shadow-xl p-8 max-w-sm w-full text-center transform scale-95 opacity-0">
+            <i data-lucide="clock" class="mx-auto h-16 w-16 text-sky-500 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">Quiz Not Active</h3>
+            <p class="text-slate-600 mb-6">The quiz is only available during our live sessions. Please check the events schedule and join us next time!</p>
+            <button id="close-quiz-modal" class="bg-slate-200 text-slate-800 font-bold py-2 px-6 rounded-lg hover:bg-slate-300 transition-colors duration-300">Got it</button>
+        </div>
+    </div>
+
+<script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Contact Form Submission
+    const contactForm = document.getElementById('contact-form');
+    const successMessage = document.getElementById('form-success-message');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        successMessage.classList.remove('hidden');
+        contactForm.reset();
+        setTimeout(() => successMessage.classList.add('hidden'), 5000);
+    });
+
+    // ====== Quiz Logic ======
+
+    // Your quiz schedule (YYYY-MM-DD HH:MM in 24hr format, local time)
+    const quizSchedule = [
+        "2025-08-25 17:00",
+        "2025-09-10 18:30",
+        "2025-09-28 15:00"
+    ];
+
+    // Example quiz link
+    const quizLink = "https://example.com/live-quiz";
+
+    const quizModal = document.getElementById('quiz-modal');
+    const quizModalBox = quizModal.querySelector('.modal-box');
+    const joinQuizButton = document.getElementById('join-quiz-button');
+    const closeQuizModalButton = document.getElementById('close-quiz-modal');
+
+    const openModal = () => {
+        quizModal.classList.remove('opacity-0', 'pointer-events-none');
+        quizModalBox.classList.remove('scale-95', 'opacity-0');
+    };
+
+    const closeModal = () => {
+        quizModal.classList.add('opacity-0');
+        quizModalBox.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => quizModal.classList.add('pointer-events-none'), 300);
+    };
+
+    // Check if current time is within a session (±30 minutes)
+    const isLiveSession = () => {
+        const now = new Date();
+        return quizSchedule.some(scheduleTime => {
+            const sessionTime = new Date(scheduleTime.replace(" ", "T"));
+            const diff = Math.abs(now - sessionTime) / (1000 * 60); // minutes difference
+            return diff <= 30; // allow 30 min before or after
+        });
+    };
+
+    // Update button appearance based on live status
+    const updateButtonStatus = () => {
+        if (isLiveSession()) {
+            joinQuizButton.textContent = "Join Now – Live!";
+            joinQuizButton.classList.add("bg-green-600", "hover:bg-green-700");
+            joinQuizButton.classList.remove("bg-blue-600", "hover:bg-blue-700");
+        } else {
+            joinQuizButton.textContent = "Join Quiz";
+            joinQuizButton.classList.add("bg-blue-600", "hover:bg-blue-700");
+            joinQuizButton.classList.remove("bg-green-600", "hover:bg-green-700");
+        }
+    };
+
+    joinQuizButton.addEventListener('click', () => {
+        if (isLiveSession()) {
+            window.open(quizLink, "_blank");
+        } else {
+            openModal();
+        }
+    });
+
+    closeQuizModalButton.addEventListener('click', closeModal);
+    quizModal.addEventListener('click', (e) => {
+        if (e.target === quizModal) closeModal();
+    });
+
+    // Check and update button every 30 seconds
+    updateButtonStatus();
+    setInterval(updateButtonStatus, 30000);
+</script>
+
+</html>
